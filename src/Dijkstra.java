@@ -45,12 +45,38 @@ public class Dijkstra<T> {
 
     public void ShortestPath(Vertex<T> destinationVertex){
         this.destinationVertex = destinationVertex;
+        int distance = distances.get(destinationVertex.getData());
+
         ArrayList<Vertex<T>> path = new ArrayList<>();
         Vertex<T> current = destinationVertex;
         while (current.getData()!=null){
             path.add(0, current);
             current = previous.get(current.getData());
         }
-        System.out.println(path);
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Vertex<T> vertex: path){
+            stringBuilder.append(vertex.getData()).append(" ");
+        }
+
+        System.out.println("Shortest Path between " + startingVertex.getData() + " and " + destinationVertex.getData());
+        System.out.println("Path: " + "[ " + stringBuilder + "] " + "Distance: " + distance);
+
+    }
+
+    public void ResultPrinter(){
+        System.out.println("Distances:");
+        for (Enumeration<T> keys = Collections.enumeration(distances.keySet()); keys.hasMoreElements();){
+            T nextKey = keys.nextElement();
+            System.out.println(nextKey + ": " + distances.get(nextKey));
+        }
+        /* Shows the previous visited vertex in the shortest path to all other vertices */
+        System.out.println("\nPrevious:");
+        for (Enumeration<T> keys = Collections.enumeration(previous.keySet()); keys.hasMoreElements();) {
+            T nextKey = keys.nextElement();
+            Vertex<T> nextVertex = previous.get(nextKey);
+            System.out.println(nextKey + ": " + nextVertex.getData());
+        }
+        System.out.println(" ");
+
     }
 }
