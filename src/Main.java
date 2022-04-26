@@ -34,9 +34,6 @@ public class Main {
         network.addEdge("D", "F", true, 12);
         // From E
         network.addEdge("E", "F", true, 12);
-        //Dijkstra<String> networkDijkstra = new Dijkstra<>(network, network.getVertex("A"));
-        //networkDijkstra.ShortestPath(network.getVertex("D"));
-        //networkDijkstra.ResultPrinter();
 
         for (Vertex<String> vertex: network.getVertices()){
             Dijkstra<String> networkDijkstra = new Dijkstra<>(network, vertex);
